@@ -15,7 +15,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startService(new Intent(this,NotificationMonitor.class));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            startService(new Intent(this, NotificationMonitor.class));
+        }else{
+            startService(new Intent(this,AccessibilityMonitor.class));
+        }
         findViewById(R.id.send_notification).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
