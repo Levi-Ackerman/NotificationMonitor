@@ -1,11 +1,9 @@
 package lee.scut.edu.notificationmonitor;
 
-import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Notification;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
 
 public class AccessibilityMonitor extends android.accessibilityservice.AccessibilityService {
 
@@ -13,7 +11,8 @@ public class AccessibilityMonitor extends android.accessibilityservice.Accessibi
     public void onAccessibilityEvent(AccessibilityEvent event) {
         if (event.getEventType() == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED){
             Notification notification = (Notification) event.getParcelableData();
-            Log.i("lee..","notification state changed");
+            Log.i("lee..","notification state changed "+notification.flags);
+
         }
     }
 
