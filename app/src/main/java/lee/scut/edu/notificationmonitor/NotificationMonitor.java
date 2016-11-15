@@ -23,20 +23,21 @@ public class NotificationMonitor extends NotificationListenerService {
     public void onNotificationPosted(final StatusBarNotification sbn) {
         super.onNotificationPosted(sbn);
         Log.i("lee..", "Notification posted");
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    //延迟5秒后,触发点击通知的效果
-                    Thread.sleep(5000);
-                    sbn.getNotification().contentIntent.send();
-                } catch (PendingIntent.CanceledException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        FileUtil.write(sbn.getNotification().extras.toString()+"\n");
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                try {
+//                    //延迟5秒后,触发点击通知的效果
+//                    Thread.sleep(5000);
+//                    sbn.getNotification().contentIntent.send();
+//                } catch (PendingIntent.CanceledException e) {
+//                    e.printStackTrace();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }.start();
     }
 
     @Override
